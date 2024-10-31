@@ -7,17 +7,17 @@
             padding: 0;
             box-sizing: border-box;
         }
-        {% for font_config in configs.font_configs.values() %}
-        {% for width_mode in configs.width_modes %}
+        {% for font_config in font_configs.values() %}
+        {% for width_mode in width_modes %}
         .font-{{ font_config.font_size }}px-{{ width_mode }} {
             font-size: {{ font_config.font_size * 2 }}px;
             line-height: {{ font_config.line_height * 2 }}px;
         }
-        {% for locale, language_flavor in configs.locale_to_language_flavor.items() %}
+        {% for locale, language_flavor in locale_to_language_flavor.items() %}
         {% with font_family = 'ark-pixel-' ~ font_config.font_size ~ 'px-' ~ width_mode ~ '-' ~ language_flavor %}
         @font-face {
             font-family: {{ font_family }};
-            src: url("{{ font_config.get_font_file_name(width_mode, language_flavor, 'woff2') }}?r={{ build_random_key }}");
+            src: url("{{ font_family }}.woff2?r={{ build_random_key }}");
         }
         .font-{{ font_config.font_size }}px-{{ width_mode }}:lang({{ locale }}) {
             font-family: {{ font_family }}, serif;
@@ -86,27 +86,27 @@
 {% block body %}
     <form class="toolbar">
         <div class="options-group">
-            {% for font_config in configs.font_configs.values() %}
+            {% for font_config in font_configs.values() %}
             <label class="option">
-                <input id="radio-font-size-{{ font_config.font_size }}" name="font_size" type="radio" onchange="onFontSizeChange('{{ font_config.font_size }}');">
+                <input id="radio-font-size-{{ font_config.font_size }}" name="font_size" type="radio" onchange="onFontSizeChange('{{ font_config.font_size }}')">
                 <span></span>
                 {{ font_config.font_size }}px
             </label>
             {% endfor %}
         </div>
         <div class="options-group" style="background-color: #94e34a;">
-            {% for width_mode in configs.width_modes %}
+            {% for width_mode in width_modes %}
             <label class="option">
-                <input id="radio-width-mode-{{ width_mode }}" name="width_mode" type="radio" onchange="onWidthModeChange('{{ width_mode }}');">
+                <input id="radio-width-mode-{{ width_mode }}" name="width_mode" type="radio" onchange="onWidthModeChange('{{ width_mode }}')">
                 <span></span>
                 {{ width_mode }}
             </label>
             {% endfor %}
         </div>
         <div class="options-group" style="background-color: #6ebdff;">
-            {% for locale, language_flavor in configs.locale_to_language_flavor.items() %}
+            {% for locale, language_flavor in locale_to_language_flavor.items() %}
             <label class="option">
-                <input id="radio-locale-{{ locale }}" name="locale" type="radio" onchange="onLocaleChange('{{ locale }}');">
+                <input id="radio-locale-{{ locale }}" name="locale" type="radio" onchange="onLocaleChange('{{ locale }}')">
                 <span></span>
                 {{ language_flavor.replace('_', '-') }}
             </label>
@@ -117,44 +117,42 @@
         <textarea id="input-box" placeholder="请随便写点什么… / Please input something…"></textarea>
     </label>
     <script>
-        let inputBox = document.getElementById('input-box');
+        let inputBox = document.getElementById('input-box')
 
-        let configs = {
+        let settings = {
             fontSize: 12,
             widthMode: 'proportional',
             locale: 'zh-cn',
-        };
+        }
 
-        function applyConfigs() {
-            localStorage.setItem('configs:playground', JSON.stringify(configs));
-            inputBox.className = 'font-' + configs.fontSize + 'px-' + configs.widthMode;
-            inputBox.setAttribute('lang', configs.locale);
+        function applySettings() {
+            localStorage.setItem('settings:playground', JSON.stringify(settings))
+            inputBox.className = 'font-' + settings.fontSize + 'px-' + settings.widthMode
+            inputBox.setAttribute('lang', settings.locale)
         }
 
         function onFontSizeChange(fontSize) {
-            configs.fontSize = fontSize;
-            applyConfigs();
+            settings.fontSize = fontSize
+            applySettings()
         }
 
         function onWidthModeChange(widthMode) {
-            configs.widthMode = widthMode;
-            applyConfigs();
+            settings.widthMode = widthMode
+            applySettings()
         }
 
         function onLocaleChange(locale) {
-            configs.locale = locale;
-            applyConfigs();
+            settings.locale = locale
+            applySettings()
         }
 
-        (function () {
-            let json = localStorage.getItem('configs:playground');
-            if (json) {
-                Object.assign(configs, JSON.parse(json));
-            }
-            document.getElementById('radio-font-size-' + configs.fontSize).checked = true;
-            document.getElementById('radio-width-mode-' + configs.widthMode).checked = true;
-            document.getElementById('radio-locale-' + configs.locale).checked = true;
-            applyConfigs();
-        })();
+        let json = localStorage.getItem('settings:playground')
+        if (json) {
+            Object.assign(settings, JSON.parse(json))
+        }
+        document.getElementById('radio-font-size-' + settings.fontSize).checked = true
+        document.getElementById('radio-width-mode-' + settings.widthMode).checked = true
+        document.getElementById('radio-locale-' + settings.locale).checked = true
+        applySettings()
     </script>
 {% endblock %}

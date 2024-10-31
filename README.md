@@ -3,11 +3,11 @@
 # 方舟像素字体 / Ark Pixel Font
 
 [![License OFL](https://img.shields.io/badge/license-OFL--1.1-orange)](https://openfontlicense.org)
-[![License MIT](https://img.shields.io/badge/license-MIT-green)](https://opensource.org/licenses/MIT)
+[![License MIT](https://img.shields.io/badge/license-MIT-green)](https://opensource.org/license/MIT)
 [![Releases](https://img.shields.io/github/v/release/TakWolf/ark-pixel-font)](https://github.com/TakWolf/ark-pixel-font/releases)
 [![Itch.io](https://img.shields.io/badge/itch.io-ark--pixel--font-FF2449?logo=itch.io&logoColor=white)](https://takwolf.itch.io/ark-pixel-font)
-[![Discord](https://img.shields.io/discord/949265373964947458?color=4E5AF0&logo=discord&logoColor=white&label=discord)](https://discord.gg/3GKtPKtjdU)
-[![QQ Group](https://img.shields.io/badge/QQ群-302383204-brightgreen?logo=tencentqq)](https://jq.qq.com/?_wv=1027&k=EXtKGHar)
+[![Discord](https://img.shields.io/badge/discord-像素字体工房-4E5AF0?logo=discord&logoColor=white)](https://discord.gg/3GKtPKtjdU)
+[![QQ Group](https://img.shields.io/badge/QQ群-像素字体工房-brightgreen?logo=tencentqq&logoColor=white)](https://qm.qq.com/q/X1mLrLLGYS)
 
 开源的泛中日韩像素字体，黑体无衬线风格，支持 10、12 和 16 像素。
 
@@ -122,41 +122,25 @@
 
 目前提供 `.otf`、`.ttf`、`.woff2`、`.bdf`、`.pcf` 五种单字体格式，以及 `.otc`、`.ttc` 两种集合字体格式。
 
-### Homebrew
+## 使用包管理器安装 
 
-您也可以通过 [Homebrew](https://brew.sh) 来安装字体。
-
-通过下面的命令来添加下载源：
-
-```shell
-brew tap homebrew/cask-fonts
-```
-
-然后根据需要安装对应的字体：
-
-- 等宽模式
+### [Homebrew](https://brew.sh)
 
 ```shell
 brew install font-ark-pixel-10px-monospaced
 brew install font-ark-pixel-12px-monospaced
 brew install font-ark-pixel-16px-monospaced
-```
 
-- 比例模式
-
-```shell
 brew install font-ark-pixel-10px-proportional
 brew install font-ark-pixel-12px-proportional
 brew install font-ark-pixel-16px-proportional
 ```
 
-详细信息请查看 [homebrew-cask-fonts](https://github.com/Homebrew/homebrew-cask-fonts) 的主页。
-
 ## 本地构建
 
 这是一个标准的 [Python3](https://www.python.org) 项目。
 
-当您配置好运行环境后，执行 `python ./build.py` 命令来开始构建。
+当您配置好运行环境后，执行 `python -m tools.build` 命令来开始构建。
 
 等待任务完成后，可在 `build/outputs` 目录下找到生成的字体文件。
 
@@ -175,18 +159,20 @@ brew install font-ark-pixel-16px-proportional
 ## 官方社区
 
 - [「像素字体工房」Discord 服务器](https://discord.gg/3GKtPKtjdU)
-- [「像素字体工房」QQ 群 (302383204)](https://jq.qq.com/?_wv=1027&k=EXtKGHar)
+- [「像素字体工房」QQ 群 (302383204)](https://qm.qq.com/q/X1mLrLLGYS)
 
 ## 程序依赖
 
 - [Pixel Font Builder](https://github.com/TakWolf/pixel-font-builder)
+- [Pixel Font Knife](https://github.com/TakWolf/pixel-font-knife)
 - [Unidata Blocks](https://github.com/TakWolf/unidata-blocks)
 - [Character Encoding Utils](https://github.com/TakWolf/character-encoding-utils)
-- [PyPNG](https://gitlab.com/drj11/pypng)
+- [PyYAML](https://github.com/yaml/pyyaml)
 - [Pillow](https://github.com/python-pillow/Pillow)
 - [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/)
 - [Jinja](https://github.com/pallets/jinja)
-- [GitPython](https://github.com/gitpython-developers/GitPython)
+- [Loguru](https://github.com/Delgan/loguru)
+- [Cyclopts](https://github.com/BrianPugh/cyclopts)
 
 ## 字形依赖
 
@@ -198,7 +184,7 @@ brew install font-ark-pixel-16px-proportional
 - [SYMBL - Unicode 查询工具](https://symbl.cc)
 - [字嗨 - 漢字部件檢索](https://zi-hi.com/sp/uni/CJKSeeker)
 - [字統网 - 字形檢字](https://zi.tools/?secondary=search)
-- [思源映射管理器](https://github.com/NightFurySL2001/shs-cid)
+- [思源映射查看器](https://github.com/TakWolf/source-han-mapping-viewer)
 
 ## 参考资料
 
@@ -212,7 +198,7 @@ brew install font-ark-pixel-16px-proportional
 如果这个项目对您有帮助，请考虑赞助来支持开发工作。
 
 [![赞赏码](https://raw.githubusercontent.com/TakWolf/TakWolf/master/images/badge-payqr@2x.png)](https://github.com/TakWolf/TakWolf/blob/master/payment-qr-codes.md)
-[![爱发电](https://raw.githubusercontent.com/TakWolf/TakWolf/master/images/badge-afdian@2x.png)](https://afdian.net/@takwolf)
+[![爱发电](https://raw.githubusercontent.com/TakWolf/TakWolf/master/images/badge-afdian@2x.png)](https://afdian.com/a/takwolf)
 
 请通过下面的链接来查看收到的赞助的具体情况：
 
